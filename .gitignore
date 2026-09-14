@@ -1,0 +1,13 @@
+# Quartus generated files
+db/
+incremental_db/
+output_files/
+
+# Simulation
+simulation/
+
+# Backup files
+*.bak
+
+# Quartus workspace
+*.qws
