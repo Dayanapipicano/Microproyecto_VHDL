@@ -1,0 +1,24 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Microproyecto_VHDL is
+
+    port(
+        clk   : in  std_logic;
+        start : in  std_logic;
+        stop  : in  std_logic;
+        reset : in  std_logic;
+
+        ssd_min : out std_logic_vector(6 downto 0);
+        ssd_dec : out std_logic_vector(6 downto 0);
+        ssd_uni : out std_logic_vector(6 downto 0)
+    );
+
+end Microproyecto_VHDL;
+
+
+architecture estructural of Microproyecto_VHDL is
+
+begin
+
+end estructural;
