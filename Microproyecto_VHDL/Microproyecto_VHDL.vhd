@@ -33,9 +33,11 @@ architecture estructural of Microproyecto_VHDL is
     signal cuenta_clk : unsigned(24 downto 0) := (others => '0');
 
     -- Valores de los tres dígitos del temporizador
-    -- min = minutos
-    -- dec = decenas de segundos
-    -- uni = unidades de segundos
+    -- min = minutos 2
+    -- dec = decenas de segundos 4
+    -- uni = unidades de segundos 7
+	 -- 02:47
+	 
     signal min : std_logic_vector(3 downto 0);
     signal dec : std_logic_vector(3 downto 0);
     signal uni : std_logic_vector(3 downto 0);
@@ -102,7 +104,7 @@ begin
 	   -- Instancia del contador de unidades (0-9)
     contador_unidades : contador_10
         port map(
-            clk    => clk,
+            clk    => clk_1hz,
             reset  => reset,
             enable => enable_uni,
             q      => uni
@@ -111,7 +113,7 @@ begin
     -- Instancia del contador de decenas de segundos (0-5)
     contador_decenas : contador_6
         port map(
-            clk    => clk,
+            clk    => clk_1hz,
             reset  => reset,
             enable => enable_dec,
             q      => dec
@@ -120,7 +122,7 @@ begin
     -- Instancia del contador de minutos (0-9)
     contador_minutos : contador_10
         port map(
-            clk    => clk,
+            clk    => clk_1hz,
             reset  => reset,
             enable => enable_min,
             q      => min
