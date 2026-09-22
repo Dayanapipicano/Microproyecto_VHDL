@@ -5,9 +5,13 @@ use IEEE.NUMERIC_STD.ALL;
 entity contador_10 is
 
     port(
+	 
+	 -- Reloj que controla el contador
         clk    : in  std_logic;
         reset  : in  std_logic;
+		  -- Permite que el contador avance cuando está en 1
         enable : in  std_logic;
+		  -- Valor actual del contador
         q      : out std_logic_vector(3 downto 0)
     );
 
@@ -25,7 +29,7 @@ begin
     process(clk, reset)
     begin
 
-        -- Reset
+        -- Si se activa el reset, el contador vuelve a cero.
         if reset = '1' then
             cuenta <= (others => '0');
 
@@ -51,7 +55,7 @@ begin
     end process;
 
 
-    -- Salida del contador
+  -- Envía el valor del contador a la salida.
     q <= std_logic_vector(cuenta);
 
 end comportamental;

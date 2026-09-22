@@ -5,9 +5,14 @@ use IEEE.NUMERIC_STD.ALL;
 entity contador_6 is
 
     port(
+	 
+	 -- Reloj que controla el contador
         clk    : in  std_logic;
+		  -- Reinicia el contador y lo lleva a cero
         reset  : in  std_logic;
+		  -- Permite que el contador avance cuando está en 1
         enable : in  std_logic;
+		  -- Valor actual del contador
         q      : out std_logic_vector(3 downto 0)
     );
 
@@ -16,6 +21,8 @@ end contador_6;
 
 architecture comportamental of contador_6 is
 
+
+    -- Guarda el valor actual del contador.
     signal cuenta : unsigned(3 downto 0) := (others => '0');
 
 begin
@@ -25,6 +32,8 @@ begin
 
         if reset = '1' then
             cuenta <= (others => '0');
+				
+				-- Se ejecuta cuando el reloj pasa de 0 a 1.
 
         elsif rising_edge(clk) then
 
@@ -35,6 +44,8 @@ begin
                     cuenta <= (others => '0');
 
                 else
+					 
+					 -- Si todavía no llega a 5, aumenta en uno.
                     cuenta <= cuenta + 1;
 
                 end if;
@@ -45,6 +56,9 @@ begin
 
     end process;
 
+	 
+	 -- Convierte el valor unsigned del contador a std_logic_vector 
+	 -- para poder enviarlo como salida.
     q <= std_logic_vector(cuenta);
 
 end comportamental;
