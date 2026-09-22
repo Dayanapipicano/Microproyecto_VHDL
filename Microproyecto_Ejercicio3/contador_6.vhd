@@ -2,6 +2,8 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
+
+--Codigo reutilizado del ejercicio 2
 entity contador_6 is
     port(
         clk    : in  std_logic;
@@ -10,6 +12,8 @@ entity contador_6 is
         q      : out std_logic_vector(3 downto 0)
     );
 end contador_6;
+
+
 
 
 architecture comportamental of contador_6 is
