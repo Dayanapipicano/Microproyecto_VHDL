@@ -81,10 +81,10 @@ begin
 
         elsif rising_edge(clk) then
 
-            if start = '1' then
+            if start = '0' then
                 running <= '1';
 
-            elsif stop = '1' then
+            elsif stop = '0' then
                 running <= '0';
 
             end if;

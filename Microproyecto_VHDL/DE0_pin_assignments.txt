@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone III"
 set_global_assignment -name DEVICE EP3C16F484C6
-set_global_assignment -name TOP_LEVEL_ENTITY Lab3a_s1
+set_global_assignment -name TOP_LEVEL_ENTITY Microproyecto_VHDL
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:21:17  SEPTEMBER 29, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
@@ -82,10 +82,10 @@ set_location_assignment PIN_G5 -to SW[4]
 set_location_assignment PIN_G4 -to SW[3]
 set_location_assignment PIN_H6 -to SW[2]
 set_location_assignment PIN_H5 -to SW[1]
-set_location_assignment PIN_J6 -to SW[0]
+set_location_assignment PIN_J6 -to reset
 set_location_assignment PIN_F1 -to start
 set_location_assignment PIN_G3 -to stop
-set_location_assignment PIN_H2 -to reset
+set_location_assignment PIN_H2 -to SW[0]
 set_location_assignment PIN_R2 -to FL_ADDR[21]
 set_location_assignment PIN_P3 -to FL_ADDR[20]
 set_location_assignment PIN_P1 -to FL_ADDR[19]
