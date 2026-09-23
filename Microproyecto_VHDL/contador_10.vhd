@@ -30,7 +30,7 @@ begin
     begin
 
         -- Si se activa el reset, el contador vuelve a cero.
-        if reset = '1' then
+        if reset = '0' then
             cuenta <= (others => '0');
 
         -- Conteo en flanco de subida

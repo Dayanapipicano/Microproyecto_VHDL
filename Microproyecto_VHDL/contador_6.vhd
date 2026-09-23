@@ -30,7 +30,7 @@ begin
     process(clk, reset)
     begin
 
-        if reset = '1' then
+        if reset = '0' then
             cuenta <= (others => '0');
 				
 				-- Se ejecuta cuando el reloj pasa de 0 a 1.

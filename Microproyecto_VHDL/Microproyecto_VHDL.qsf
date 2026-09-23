@@ -61,7 +61,7 @@ set_global_assignment -name VHDL_FILE contador_6.vhd
 set_global_assignment -name VHDL_FILE decoder_ssd.vhd
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_location_assignment PIN_G21 -to clk
-set_location_assignment PIN_J6 -to reset
+set_location_assignment PIN_H2 -to reset
 set_location_assignment PIN_A15 -to ssd_dec[6]
 set_location_assignment PIN_E14 -to ssd_dec[5]
 set_location_assignment PIN_B14 -to ssd_dec[4]
