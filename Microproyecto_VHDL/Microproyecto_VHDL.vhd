@@ -16,7 +16,7 @@ entity Microproyecto_VHDL is
         start : in  std_logic;
         stop  : in  std_logic;
         reset : in  std_logic;
-        
+        punto : out std_logic;
 		  
 		  -- Salida que muestra los minutos en el display de 7 segmentos
         ssd_min : out std_logic_vector(6 downto 0);
@@ -61,6 +61,8 @@ architecture estructural of Microproyecto_VHDL is
 	   
 begin
 
+
+    punto <= '0';
     -- Divisor de frecuencia: 50 MHz → 1 Hz 
 	 -- Apoyo de IA para organizar y explicar la división de frecuencia 
 	 -- utilizada para obtener el reloj de 1 Hz.

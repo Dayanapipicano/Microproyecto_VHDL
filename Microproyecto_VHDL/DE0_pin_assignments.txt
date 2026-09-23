@@ -243,7 +243,7 @@ set_location_assignment PIN_J22 -to VGA_B[2]
 set_location_assignment PIN_K21 -to VGA_B[1]
 set_location_assignment PIN_K22 -to VGA_B[0]
 set_location_assignment PIN_G21 -to clk
-set_location_assignment PIN_D13 -to HEX0_DP
+set_location_assignment PIN_D13 -to punto
 set_location_assignment PIN_B15 -to HEX1_DP
 set_location_assignment PIN_A18 -to HEX2_DP
 set_location_assignment PIN_G16 -to HEX3_DP
