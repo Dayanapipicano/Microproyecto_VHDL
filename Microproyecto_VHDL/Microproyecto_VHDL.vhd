@@ -69,6 +69,7 @@ begin
 	 
 	 -- Cuando reset está activo, el divisor vuelve a su estado inicial.
         if reset = '1' then
+		  --Cuenta los pulsos
             cuenta_clk <= (others => '0');
             clk_1hz <= '0';
 
