@@ -49,12 +49,14 @@ architecture estructural of Ejercicio1_VHDL is
     signal entrada_anterior : std_logic := '1';
 
 
-    -- Indica que ya se superaron los 35 segundos
-    signal tiempo_extra : std_logic := '0';
+    
 	 -- Reinicia los contadores cuando entra una nueva persona
     signal reset_contadores : std_logic := '0';
 
 
+	 
+	 -- Indica que ya se superaron los 35 segundos
+    signal tiempo_extra : std_logic := '0';
     -- Habilitación de los contadores del tiempo extra
     signal enable_extra_uni : std_logic;
     signal enable_extra_dec : std_logic;
@@ -63,6 +65,9 @@ architecture estructural of Ejercicio1_VHDL is
     -- Valores del tiempo extra
     signal extra_dec : std_logic_vector(3 downto 0);
     signal extra_uni : std_logic_vector(3 downto 0);
+	 
+	 signal display_dec : std_logic_vector(3 downto 0);
+    signal display_uni : std_logic_vector(3 downto 0);
 
 
 
@@ -146,18 +151,26 @@ begin
             contando <= '0';
             felicitacion <= '1';
 
+        
+
+        end if;
+		  
+		  if salida = '0' and tiempo_extra = '1' then
+
+           tiempo_extra <= '0';
+
         end if;
 
 
         -- Cuando el contador llega a 35 segundos, 
         -- se detiene el primer temporizador 
         -- y comienza el tiempo extra.
-        if dec = "0011" and uni = "0101" then 
- 
-            contando <= '0'; 
-            tiempo_extra <= '1'; 
- 
-        end if; 
+        if contando = '1' and dec = "0011" and uni = "0101" then
+
+            contando <= '0';
+            tiempo_extra <= '1';
+
+        end if;
  
  
      
@@ -210,6 +223,11 @@ end process;
     enable_extra_dec <= tiempo_extra
                         when extra_uni = "1001"
                         else '0';
+								
+								
+	display_dec <= extra_dec when tiempo_extra = '1' else dec;
+
+   display_uni <= extra_uni when tiempo_extra = '1' else uni;
 
     ----------------------------------------------------------------
     -- CONTADOR DE UNIDADES
@@ -277,7 +295,7 @@ end process;
     decoder_decenas : decoder_ssd
 
         port map(
-            digit => dec,
+            digit => display_dec,
             ssd   => ssd_dec
         );
 
@@ -289,7 +307,7 @@ end process;
     decoder_unidades : decoder_ssd
 
         port map(
-            digit => uni,
+            digit => display_uni,
             ssd   => ssd_uni
         );
 
