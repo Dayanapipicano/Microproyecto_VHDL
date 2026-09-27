@@ -51,8 +51,6 @@ architecture estructural of Ejercicio1_VHDL is
 
     -- Indica que ya se superaron los 35 segundos
     signal tiempo_extra : std_logic := '0';
-	 -- Reinicia los contadores cuando entra una nueva persona
-    signal reset_contadores : std_logic := '0';
 
 
     -- Habilitación de los contadores del tiempo extra
@@ -106,36 +104,17 @@ begin
  
     if rising_edge(clk) then 
  
- 
-
         -- Detecta una nueva entrada.
         -- La entrada es activa en bajo.
         if entrada = '0' and entrada_anterior = '1' then 
-		  
-		  -- Reiniciar todos los contadores
-            reset_contadores <= '1';
  
- 
-          
+            -- Comienza el temporizador de 35 segundos.
+            contando <= '1';
 
-             -- Comienza nuevamente el temporizador
-             contando <= '1';
-
-             -- Ya no estamos en tiempo extra
-             tiempo_extra <= '0';
-
-             -- Apaga la felicitación anterior
-             felicitacion <= '0';
-			else
-
-            -- Liberar el reset
-            reset_contadores <= '0';
-				 
-		
+            -- Apaga la felicitación al comenzar una nueva entrada.
+            felicitacion <= '0';
  
         end if; 
-		  -- Guardar estado anterior de entrada
-        entrada_anterior <= entrada;
  
  
         -- Si se presiona SALIDA antes de los 35 segundos,
@@ -160,7 +139,8 @@ begin
         end if; 
  
  
-     
+        -- Guarda el estado anterior de la entrada. 
+        entrada_anterior <= entrada; 
  
     end if; 
  
@@ -220,7 +200,7 @@ end process;
 
         port map(
             clk    => clk_1hz,
-            reset => reset_contadores,
+            reset  => '0',
             enable => enable_uni,
             q      => uni
         );
@@ -235,7 +215,7 @@ end process;
 
         port map(
             clk    => clk_1hz,
-            reset => reset_contadores,
+            reset  => '0',
             enable => enable_dec,
             q      => dec
         );
@@ -249,7 +229,7 @@ end process;
 
         port map(
             clk    => clk_1hz,
-            reset => reset_contadores,
+            reset  => '0',
             enable => enable_extra_uni,
             q      => extra_uni
         );
@@ -263,7 +243,7 @@ end process;
 
         port map(
             clk    => clk_1hz,
-            reset => reset_contadores,
+            reset  => '0',
             enable => enable_extra_dec,
             q      => extra_dec
         );
