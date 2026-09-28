@@ -8,9 +8,10 @@ entity Microproyecto_Ejercicio3 is
     port(
 	 
         clk    : in  std_logic;
-		  --Boton que permite realizar todas las funciones 
-		  --Start,Reset,Stop
+		  
         button : in  std_logic;
+		  
+		  punto : out std_logic;
 		 
         --Codigo reutilizado del ejercicio 2
         ssd_min : out std_logic_vector(6 downto 0);
@@ -26,8 +27,7 @@ architecture estructural of Microproyecto_Ejercicio3 is
 
 
     -- Variable de estado que indica si el temporizador está funcionando. 
-	 -- Se utiliza para alternar entre START y STOP con una pulsación corta.
-	 -- Apoyo de IA para organizar la lógica de funcionamiento del botón.
+	 
     signal running : std_logic := '0';
 	 
 	 -- Señal de reloj de 1 Hz utilizada para hacer avanzar el temporizador
@@ -37,18 +37,18 @@ architecture estructural of Microproyecto_Ejercicio3 is
 	 
 	 -- Contador utilizado para dividir el reloj de la FPGA y obtener 1 Hz.
     signal cuenta_clk : unsigned(24 downto 0) := (others => '0');
+	 
+	 
     -- Guarda el estado anterior del botón para detectar el momento 
 	 -- en que el usuario deja de presionarlo. 
-	 -- Apoyo de IA para implementar la detección de pulsaciones.
+	 
     
 	 signal button_anterior : std_logic := '1';
-	 -- Contador utilizado para medir cuánto tiempo permanece presionado 
-	 -- el botón y así diferenciar una pulsación corta de una larga. 
-	 -- Apoyo de IA para implementar el reinicio después de 2 segundos.
+	
+	 
      -- Contador para medir los 2 segundos
     signal tiempo_pulsado : unsigned(26 downto 0) := (others => '0');
-    -- Señal utilizada para reiniciar los contadores del temporizador. 
-	 -- Apoyo de IA para adaptar la función de RESET al único botón disponible.
+  
     signal reset : std_logic := '0';
     
 	 
@@ -63,6 +63,9 @@ architecture estructural of Microproyecto_Ejercicio3 is
 	 --fin_reutilizado
 
 begin
+
+    punto <= '0' when (running = '1' and min /= "0000") else '1';
+	 
   -- Divisor de frecuencia: 50 MHz → 1 Hz
   --Codigo reutilizado del ejercicio 2
     process(clk)
@@ -85,7 +88,7 @@ begin
 -- Control del botón
 -- Esta parte permite utilizar un solo botón para realizar las funciones
 -- de START, STOP y RESET.
--- Apoyo de IA para implementar la lógica de pulsación corta y larga.
+
     process(clk)
     begin
         if rising_edge(clk) then
