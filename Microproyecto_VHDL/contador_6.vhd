@@ -30,6 +30,7 @@ begin
     process(clk, reset)
     begin
 
+	   -- Reinicia todas las posiciones del contador a cero.
         if reset = '0' then
             cuenta <= (others => '0');
 				

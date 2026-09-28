@@ -97,7 +97,8 @@ begin
     process(clk, reset)
 	 begin
 	 
-	 
+	     
+		   -- Si se activa el reset, se detiene el contador
         if reset = '0' then
             running <= '0';
 
