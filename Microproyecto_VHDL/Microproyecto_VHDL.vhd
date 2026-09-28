@@ -3,9 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 use work.timer_pkg.all;
--- Se utiliza el package del proyecto para poder usar
--- los componentes de los contadores y el decodificador SSD
--- sin tener que declararlos otra vez aquí.
+
 
 entity Microproyecto_VHDL is
 
@@ -18,11 +16,10 @@ entity Microproyecto_VHDL is
         reset : in  std_logic;
         punto : out std_logic;
 		  
-		  -- Salida que muestra los minutos en el display de 7 segmentos
+        
+		  --Salidad de los displays de 7 segmentos
         ssd_min : out std_logic_vector(6 downto 0);
-		  -- Salida que muestra los decenas en el display de 7 segmentos
         ssd_dec : out std_logic_vector(6 downto 0);
-		  -- Salida que muestra los unidades en el display de 7 segmentos
         ssd_uni : out std_logic_vector(6 downto 0)
     );
 
@@ -62,10 +59,9 @@ architecture estructural of Microproyecto_VHDL is
 begin
 
 
-    punto <= '0';
+    punto <= '0' when (running = '1' and min /= "0000") else '1';
     -- Divisor de frecuencia: 50 MHz → 1 Hz 
-	 -- Apoyo de IA para organizar y explicar la división de frecuencia 
-	 -- utilizada para obtener el reloj de 1 Hz.
+
     process(clk, reset)
     begin
 	 
@@ -96,14 +92,12 @@ begin
 
 
     -- Control de START y STOP 
-	 -- Apoyo de IA para organizar la lógica de control 
-	 -- mediante las señales start, stop y running.
+
 	 
     process(clk, reset)
 	 begin
 	 
 	 
-	 -- El reset detiene el temporizador.
         if reset = '0' then
             running <= '0';
 
@@ -115,8 +109,7 @@ begin
 		  -- START activo en cero: pone el temporizador a funcionar.
             if start = '0' then
                 running <= '1';
-					 
-					 -- STOP activo en cero: detiene el temporizador.
+				
 
             elsif stop = '0' then
                 running <= '0';
@@ -125,6 +118,7 @@ begin
 
         end if;
     end process;
+	 
 	   -- Las unidades cuentan mientras el temporizador está funcionando
     enable_uni <= running;
 
@@ -137,10 +131,9 @@ begin
     
 	 
 	 
-	 -- contador_10 fue declarado en el package y aquí se utiliza 
-	 -- como componente del diseño.
+	 --Instancias de contadores conectadas señales con el componente de diseño
 	 
-	   -- Instancia del contador de unidades (0-9)
+	   
     contador_unidades : contador_10
         port map(
             clk    => clk_1hz,
@@ -149,12 +142,10 @@ begin
             q      => uni
         );
 		  
-		  -- port map conecta las señales internas del proyecto 
-		  -- con las entradas y salidas del componente contador_10. 
 		  -- El contador recibe el reloj de 1 Hz y entrega su resultado 
 		  -- en la señal uni.
 
-    -- Instancia del contador de decenas de segundos (0-5)
+    --0-5
     contador_decenas : contador_6
         port map(
             clk    => clk_1hz,
@@ -163,7 +154,7 @@ begin
             q      => dec
         );
 
-    -- Instancia del contador de minutos (0-9)
+
     contador_minutos : contador_10
         port map(
             clk    => clk_1hz,
@@ -172,23 +163,21 @@ begin
             q      => min
         );
 		  
-	    -- Decodificador para el display de minutos. 
-		 -- Convierte el valor binario de min en las señales 
-		 -- necesarias para mostrar el número en el display de 7 segmentos.
+	  -- Decodificadores para los displays
+	
     decoder_minutos : decoder_ssd
         port map(
             digit => min,
             ssd   => ssd_min
         );
 
-    -- Decodificador para el display de decenas de segundos
+   
     decoder_decenas : decoder_ssd
         port map(
             digit => dec,
             ssd   => ssd_dec
         );
 
-    -- Decodificador para el display de unidades de segundos
     decoder_unidades : decoder_ssd
         port map(
             digit => uni,

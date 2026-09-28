@@ -29,7 +29,7 @@ begin
     process(clk, reset)
     begin
 
-        -- Si se activa el reset, el contador vuelve a cero.
+        
         if reset = '0' then
             cuenta <= (others => '0');
 

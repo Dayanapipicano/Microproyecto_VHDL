@@ -3,8 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity decoder_ssd is
 
--- Define la entrada que recibe el número y la salida
--- que controla el display de 7 segmentos.
+
 
     port(
 	 
@@ -25,7 +24,7 @@ begin
 -- Según el valor de digit, se selecciona la combinación 
 -- correspondiente para mostrar el número en el display.
 
---Dependiendo del valor de digit selecciona una salida determinada
+
     with digit select
 
         ssd <=
