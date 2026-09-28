@@ -305,20 +305,6 @@ set_location_assignment PIN_A14 -to HEX1[3]
 set_location_assignment PIN_C13 -to HEX1[2]
 set_location_assignment PIN_B13 -to HEX1[1]
 set_location_assignment PIN_A13 -to HEX1[0]
-set_location_assignment PIN_F14 -to HEX2[6]
-set_location_assignment PIN_B17 -to HEX2[5]
-set_location_assignment PIN_A17 -to HEX2[4]
-set_location_assignment PIN_E15 -to HEX2[3]
-set_location_assignment PIN_B16 -to HEX2[2]
-set_location_assignment PIN_A16 -to HEX2[1]
-set_location_assignment PIN_D15 -to HEX2[0]
-set_location_assignment PIN_G15 -to HEX3[6]
-set_location_assignment PIN_D19 -to HEX3[5]
-set_location_assignment PIN_C19 -to HEX3[4]
-set_location_assignment PIN_B19 -to HEX3[3]
-set_location_assignment PIN_A19 -to HEX3[2]
-set_location_assignment PIN_F15 -to HEX3[1]
-set_location_assignment PIN_B18 -to HEX3[0]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity Lab3a_s1 -section_id Top
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_location_assignment PIN_F1 -to BUTTON[2]
@@ -338,13 +324,6 @@ set_location_assignment PIN_A14 -to ssd_dec[3]
 set_location_assignment PIN_C13 -to ssd_dec[2]
 set_location_assignment PIN_B13 -to ssd_dec[1]
 set_location_assignment PIN_A13 -to ssd_dec[0]
-set_location_assignment PIN_F14 -to ssd_min[6]
-set_location_assignment PIN_B17 -to ssd_min[5]
-set_location_assignment PIN_A17 -to ssd_min[4]
-set_location_assignment PIN_E15 -to ssd_min[3]
-set_location_assignment PIN_B16 -to ssd_min[2]
-set_location_assignment PIN_A16 -to ssd_min[1]
-set_location_assignment PIN_D15 -to ssd_min[0]
 set_global_assignment -name CDF_FILE ../output_files/Chain2.cdf
 set_global_assignment -name CDF_FILE ../output_files/Chain3.cdf
 set_global_assignment -name CDF_FILE output_files/Chain5.cdf
@@ -359,4 +338,18 @@ set_global_assignment -name VHDL_FILE contador_10.vhd
 set_location_assignment PIN_J1 -to alarma
 set_location_assignment PIN_G3 -to salida
 set_location_assignment PIN_B1 -to felicitacion
+set_location_assignment PIN_G15 -to ssd_extra_dec[6]
+set_location_assignment PIN_D19 -to ssd_extra_dec[5]
+set_location_assignment PIN_C19 -to ssd_extra_dec[4]
+set_location_assignment PIN_B19 -to ssd_extra_dec[3]
+set_location_assignment PIN_A19 -to ssd_extra_dec[2]
+set_location_assignment PIN_F15 -to ssd_extra_dec[1]
+set_location_assignment PIN_B18 -to ssd_extra_dec[0]
+set_location_assignment PIN_F14 -to ssd_extra_uni[6]
+set_location_assignment PIN_B17 -to ssd_extra_uni[5]
+set_location_assignment PIN_A17 -to ssd_extra_uni[4]
+set_location_assignment PIN_E15 -to ssd_extra_uni[3]
+set_location_assignment PIN_B16 -to ssd_extra_uni[2]
+set_location_assignment PIN_A16 -to ssd_extra_uni[1]
+set_location_assignment PIN_D15 -to ssd_extra_uni[0]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
